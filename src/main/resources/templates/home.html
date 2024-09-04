@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+	<header>
+	        <nav>
+	            <ul>
+	                <li><a href="#home">Home</a></li>
+	                <li><a href="#about">About</a></li>
+	                <li><a href="#services">Services</a></li>
+	                <li><a href="#schedule">Schedule</a></li>
+	                <li><a href="#contact">Contact</a></li>
+	            </ul>
+	        </nav>
+	    </header>
+
+	    <section id="home" class="hero">
+	        <h1>Welcome to Our Gym</h1>
+	        <p>Transform your body, mind, and spirit.</p>
+	        <a href="#contact" class="cta-button">Join Now</a>
+	    </section>
+
+	    <section id="about">
+	        <h2>About Us</h2>
+	        <p>Our gym is dedicated to helping you achieve your fitness goals.</p>
+	    </section>
+
+	    <section id="services">
+	        <h2>Our Services</h2>
+	        <ul>
+	            <li>Personal Training</li>
+	            <li>Group Classes</li>
+	            <li>Nutrition Guidance</li>
+	            <li>Yoga and Pilates</li>
+	        </ul>
+	    </section>
+
+	    <section id="schedule">
+	        <h2>Class Schedule</h2>
+	        <p>Check out our class schedule to find a time that works for you.</p>
+	    </section>
+
+	    <section id="contact">
+	        <h2>Contact Us</h2>
+	        <p>Email: NewFIT@gym.com</p>
+	        <p>Phone: (+977) 9866554477</p>
+	        <p>Address: New Baneshwor, Kathmandu</p>
+	    </section>
+		<section id="contact-form">
+    <h2>Reach Us</h2>
+    <form action="/submit-form" method="post">
+		<div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+		</div>
+        <br>
+		<div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+		</div>
+        <br>
+		<div class="form-group">
+		<label for="message">Message:</label>
+		<textarea id="message" name="message" rows="4" required></textarea>
+		</div>
+		<br>
+        <button type="submit">Submit</button>
+    </form>
+	</section>
+</body>
+</html>
