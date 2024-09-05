@@ -15,10 +15,11 @@ public class ContactsController {
     }
 
     @PostMapping("/submit-form")
-    public String submitForm(@RequestParam String name, @RequestParam String email, @RequestParam String message) {
+    public String submitForm(@RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam String message) {
        
         System.out.println("Name: " + name);
         System.out.println("Email: " + email);
+        System.out.println("Password: " + password);
         System.out.println("Message: " + message);
 
        
