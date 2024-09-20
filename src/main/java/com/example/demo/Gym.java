@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;

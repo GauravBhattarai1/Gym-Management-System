@@ -1,15 +1,12 @@
-package Controller;
+package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.example.demo.entity.User;
-import com.example.demo.service.UserService;
-
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -23,25 +20,35 @@ public class UserController {
 
     // Display form for adding a new user
     @GetMapping("/add.html")
+    public String addUserForm1(Model model) {
+        model.addAttribute("user", new User());  // Passing an empty user object to the form
+        return "add-user";  // Renders add-user.html from the templates folder
+    }
+
+    @GetMapping("/add")
     public String addUserForm(Model model) {
         model.addAttribute("user", new User());  // Passing an empty user object to the form
         return "add-user";  // Renders add-user.html from the templates folder
     }
 
     // Handle form submission for adding a new user with file upload
+    @Autowired
+    private PasswordEncoder passwordEncoder;  // Inject the PasswordEncoder
+
     @PostMapping("/adduser")
-    public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult result,
-                             @RequestParam("image") MultipartFile image, Model model) {
+    public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
         // Handle validation errors
         if (result.hasErrors()) {
             return "add-user";  // Return to the form if validation fails
         }
 
-        // Save the user using the service (and image processing can be added later)
-        userService.saveUser(user);
-        return "redirect:/user/list";  // Redirect to the updated user list view
-    }
+        // Encrypt the user's password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+        // Save the user using the service
+        userService.saveUser(user);
+        return "redirect:/user/list";  // Redirect to the user list view
+    }
     // Display the list of users
     @GetMapping("/list")
     public String getUserList(Model model) {

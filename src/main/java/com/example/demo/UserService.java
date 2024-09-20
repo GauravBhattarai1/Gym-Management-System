@@ -1,16 +1,16 @@
-package com.example.demo.service;
+package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.entity.User;
-import com.example.demo.repo.UserRepository;
 
 import java.util.List;
 
 @Service
 public class UserService {
-
+	
     @Autowired
     private UserRepository userRepository;
 
@@ -39,4 +39,12 @@ public class UserService {
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
+
+	public UserRepository getUserRepository() {
+		return userRepository;
+	}
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 }
