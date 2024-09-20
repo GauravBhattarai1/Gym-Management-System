@@ -22,6 +22,7 @@
             display: block;
             font-size: 1rem;
             margin-bottom: 0.5rem;
+            color: #fff;
         }
 
         input {
@@ -36,6 +37,11 @@
 
         input:focus {
             border-color: #ff5722;
+            outline: none;
+        }
+
+        .form-control-file {
+            padding: 0.5rem;
         }
 
         button {
@@ -46,27 +52,36 @@
             color: white;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
         }
 
         button:hover {
             background: #e64a19;
         }
+
+        span {
+            color: #ff5722;
+            font-size: 0.9rem;
+        }
     </style>
     <title>Add User</title>
 </head>
 <body>
-    <h1>Add a New User</h1>
-    <form action="/submit-form" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+	<h1>Add a New User</h1>
+	    <form th:action="@{/user/adduser}" th:object="${user}" enctype="multipart/form-data" method="post">
+	        <label for="name">Name:</label>
+	        <input type="text" th:field="*{name}" id="name" required>
+	        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+	        <label for="email">Email:</label>
+	        <input type="email" th:field="*{email}" id="email" required>
+	        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+	        <label for="password">Password:</label>
+	        <input type="password" th:field="*{password}" id="password" required>
+	        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
-        <button type="submit">Add User</button>
-    </form>
-</body>
-</html>
+	        <input type="submit" value="Add User">
+	    </form>
+	</body>
+	</html>
