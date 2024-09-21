@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Gym</title>
+    <style>
+		body {
+		            font-family: Arial, sans-serif;
+		            background-color: #000;
+		            color: #fff;
+		            margin: 20px;
+		        }
+
+		        form {
+		            background: #222;
+		            padding: 2rem;
+		            margin: 2rem auto;
+		            width: 80%;
+		            max-width: 600px;
+		            border-radius: 5px;
+		        }
+
+		        label {
+		            display: block;
+		            font-size: 1rem;
+		            margin-bottom: 0.5rem;
+		            color: #fff;
+		        }
+
+		        input {
+		            width: 100%;
+		            padding: 0.75rem;
+		            margin-bottom: 1rem;
+		            background: #333;
+		            color: #fff;
+		            border: 1px solid #333;
+		            border-radius: 5px;
+		        }
+
+		        input:focus {
+		            border-color: #ff5722;
+		            outline: none;
+		        }
+
+		        .form-control-file {
+		            padding: 0.5rem;
+		        }
+
+		        button {
+		            width: 100%;
+		            padding: 0.75rem;
+		            font-size: 1.25rem;
+		            background: #ff5722;
+		            color: white;
+		            border: none;
+		            border-radius: 5px;
+		            cursor: pointer;
+		        }
+
+		        button:hover {
+		            background: #e64a19;
+		        }
+
+		        span {
+		            color: #ff5722;
+		            font-size: 0.9rem;
+		        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Gym</h1>
+		<form th:action="@{/gym/add}" th:object="${gym}" method="post">
+		       <!-- Gym Name -->
+		       <label for="gymName">Gym Name:</label>
+		       <input type="text" id="gymName" th:field="*{gymName}" placeholder="Enter gym name" required>
+		       <span th:if="${#fields.hasErrors('gymName')}" th:errors="*{gymName}"></span>
+
+		       <!-- Location -->
+		       <label for="location">Location:</label>
+		       <input type="text" id="location" th:field="*{location}" placeholder="Enter location" required>
+		       <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></span>
+
+		       <!-- Owner Name -->
+		       <label for="ownerName">Owner Name:</label>
+		       <input type="text" id="ownerName" th:field="*{ownerName}" placeholder="Enter owner name" required>
+		       <span th:if="${#fields.hasErrors('ownerName')}" th:errors="*{ownerName}"></span>
+
+		       <!-- Contact Number -->
+		       <label for="contactNumber">Contact Number:</label>
+		       <input type="text" id="contactNumber" th:field="*{contactNumber}" placeholder="Enter contact number" required>
+		       <span th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></span>
+
+		       <!-- Submit Button -->
+		       <button type="submit">Add Gym</button>
+		   </form>
+    </div>
+</body>
+</html>

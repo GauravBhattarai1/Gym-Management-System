@@ -8,14 +8,13 @@ import jakarta.persistence.Id;
 public class User {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Use IDENTITY strategy for MySQL
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  
     private int id;
 
     private String name;
     private String email;
     private String password;
 
-    // Getters and setters
     public int getId() {
         return id;
     }
