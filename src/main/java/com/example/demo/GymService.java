@@ -12,24 +12,20 @@ public class GymService {
     @Autowired
     private GymRepository gymRepository;
 
-    // Retrieve all gyms
     public List<Gym> getAllGyms() {
         return gymRepository.findAll();
     }
 
-    // Save or update a gym
     public void saveGym(Gym gym) {
-        gymRepository.save(gym); // Save the gym object to the database
+        gymRepository.save(gym); 
     }
 
-    // Find a gym by ID
     public Gym getGymById(int id) {
         Optional<Gym> gym = gymRepository.findById(id);
-        return gym.orElse(null); // Return the gym or null if not found
+        return gym.orElse(null); 
     }
 
-    // Delete a gym by ID
     public void deleteGym(int id) {
-        gymRepository.deleteById(id); // Delete the gym by its ID
+        gymRepository.deleteById(id); 
     }
 }

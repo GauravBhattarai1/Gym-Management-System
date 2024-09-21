@@ -16,64 +16,55 @@ public class GymController {
     @Autowired
     private GymService gymService;
 
-    // Display form for adding a new gym
-  
     @GetMapping("/add")
     public String addGymForm(Model model) {
-        model.addAttribute("gym", new Gym());  // Make sure "gym" is being added
-        return "add-gym";  // This should render add-gym.html
+        model.addAttribute("gym", new Gym());  
+        return "add-gym";  
     }
 
 
-    // Handle form submission for adding a new gym
     @PostMapping("/add")
     public String submitGymForm(@Valid @ModelAttribute("gym") Gym gym, BindingResult result, Model model) {
         // Handle validation errors
         if (result.hasErrors()) {
-            return "add-gym";  // Return to the form if validation fails
+            return "add-gym";  
         }
 
-        // Save the gym using the service
         gymService.saveGym(gym);
-        return "redirect:/gym/list";  // Redirect to the gym list view
+        return "redirect:/gym/list";  
     }
 
-    // Display the list of gyms
     @GetMapping("/list")
     public String getGymList(Model model) {
-        List<Gym> gyms = gymService.getAllGyms();  // Fetch all gyms from the service
-        model.addAttribute("gyms", gyms);  // Add gyms list to the model
-        return "gym-list";  // Renders gym-list.html
+        List<Gym> gyms = gymService.getAllGyms(); 
+        model.addAttribute("gyms", gyms);  
+        return "gym-list";  
     }
 
-    // Display form for editing an existing gym
     @GetMapping("/edit/{id}")
     public String editGymForm(@PathVariable int id, Model model) {
-        Gym gym = gymService.getGymById(id);  // Find the gym by ID via the service
+        Gym gym = gymService.getGymById(id);  
         if (gym != null) {
-            model.addAttribute("gym", gym);  // Pass the gym object to the edit form
-            return "edit-gym";  // Renders edit-gym.html
+            model.addAttribute("gym", gym);  
+            return "edit-gym";  
         }
-        return "redirect:/gym/list";  // Redirect to gym list if gym is not found
+        return "redirect:/gym/list";  
     }
 
-    // Handle form submission for editing an existing gym
     @PostMapping("/edit")
     public String editGym(@Valid @ModelAttribute("gym") Gym gym, BindingResult result) {
-        // Handle validation errors
+       
         if (result.hasErrors()) {
-            return "edit-gym";  // Return to the edit form if validation fails
+            return "edit-gym";  
         }
 
-        // Save the updated gym using the service
         gymService.saveGym(gym);
-        return "redirect:/gym/list";  // Redirect to the gym list after editing
+        return "redirect:/gym/list";  
     }
 
-    // Delete a gym by ID
     @GetMapping("/delete/{id}")
     public String deleteGym(@PathVariable int id) {
-        gymService.deleteGym(id);  // Delete gym via the service
-        return "redirect:/gym/list";  // Redirect to the gym list after deletion
+        gymService.deleteGym(id);  
+        return "redirect:/gym/list";  
     }
 }

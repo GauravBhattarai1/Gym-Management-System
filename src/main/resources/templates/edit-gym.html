@@ -59,25 +59,22 @@
 
     <form th:action="@{/gym/edit}" th:object="${gym}" method="post">
        
-        <!-- Hidden ID Field -->
+       
         <input type="hidden" th:field="*{id}" name="id" />
 
-        <!-- Gym Name Field -->
+   
         <label for="gymName">Gym Name:</label>
         <input type="text" id="gymName" th:field="*{gymName}" placeholder="Enter gym name" required />
         <span th:if="${#fields.hasErrors('gymName')}" th:errors="*{gymName}"></span> <!-- Validation error -->
 
-        <!-- Location Field -->
         <label for="location">Location:</label>
         <input type="text" id="location" th:field="*{location}" placeholder="Enter location" required />
         <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></span> <!-- Validation error -->
 
-        <!-- Owner Name Field -->
         <label for="ownerName">Owner Name:</label>
         <input type="text" id="ownerName" th:field="*{ownerName}" placeholder="Enter owner name" required />
         <span th:if="${#fields.hasErrors('ownerName')}" th:errors="*{ownerName}"></span> <!-- Validation error -->
 
-        <!-- Submit Button -->
         <input type="submit" value="Save Changes" />
     </form>
 </body>
