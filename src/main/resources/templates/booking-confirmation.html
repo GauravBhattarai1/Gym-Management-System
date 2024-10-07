@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .confirmation {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #28a745;
+            padding: 30px;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        h1 {
+            color: #28a745;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #d3d3d3;
+        }
+
+        .details {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .details p {
+            margin: 15px 0;
+            color: #d3d3d3;
+        }
+
+        .details strong {
+            color: #28a745;
+        }
+
+        .qr-code {
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: block;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation">
+        <h1>Booking Confirmation</h1>
+        <p>Thank you for booking! Here are your details:</p>
+
+        <div class="details">
+            <p><strong>Gym:</strong> <span th:text="${gym.gymName}">Gym Name</span></p>
+            <p><strong>Location:</strong> <span th:text="${gym.location}">Gym Location</span></p>
+            <p><strong>Owner Name:</strong> <span th:text="${gym.ownerName}">Owner Name</span></p>
+            <p><strong>Contact Number:</strong> <span th:text="${gym.contactNumber}">Contact Number</span></p>
+            <p><strong>Booking Date:</strong> <span th:text="${selectedDate}">Selected Date</span></p>
+            <p><strong>Booking Time:</strong> <span th:text="${selectedTime}">Selected Time</span></p>
+        </div>
+
+        <img th:src="@{'data:image/png;base64,' + ${qrCodeImage}}" alt="Booking QR Code" class="qr-code"/>
+
+        <a th:href="@{/gym/select-gym}" class="back-link">Back to Gym Selection</a>
+    </div>
+</body>
+</html>

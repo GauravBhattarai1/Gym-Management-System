@@ -10,29 +10,30 @@ public class Gym {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    // Validates that gymName is not null/blank and has a maximum length of 100 characters
     @NotBlank(message = "Gym name is mandatory")
     @Size(max = 100, message = "Gym name must be less than 100 characters")
     @Column(nullable = false, length = 100)
     private String gymName;
     
-    // Validates that location is not null/blank and has a maximum length of 150 characters
     @NotBlank(message = "Location is mandatory")
     @Size(max = 150, message = "Location must be less than 150 characters")
     @Column(nullable = false, length = 150)
     private String location;
     
-    // Validates that ownerName is not null/blank and has a maximum length of 100 characters
     @NotBlank(message = "Owner name is mandatory")
     @Size(max = 100, message = "Owner name must be less than 100 characters")
     @Column(nullable = false, length = 100)
     private String ownerName;
     
-    // Validates that contactNumber is not null/blank and matches a 10-digit number pattern
     @NotBlank(message = "Contact number is mandatory")
     @Pattern(regexp = "\\d{10}", message = "Contact number must be 10 digits")
     @Column(nullable = false, length = 10)
     private String contactNumber;
+
+    @NotBlank(message = "Description is mandatory")
+    @Size(max = 255, message = "Description must be less than 255 characters")
+    @Column(nullable = false, length = 255)
+    private String description;
 
     // Getters and Setters
     public int getId() {
@@ -73,5 +74,24 @@ public class Gym {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    @Column(name = "image_url")
+    private String imageUrl;  // Field to store the image URL
+
+    // Getters and setters for all fields including imageUrl
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -67,21 +67,26 @@
     <title>Add User</title>
 </head>
 <body>
+	
 	<h1>Add a New User</h1>
-	<form th:action="@{/user/adduser}" th:object="${user}" enctype="multipart/form-data" method="post">
-	    <label for="name">Name:</label>
-	    <input type="text" th:field="*{name}" id="name" required>
-	    
-	    <label for="email">Email:</label>
-	    <input type="email" th:field="*{email}" id="email" required>
-	    
-	    <label for="password">Password:</label>
-	    <input type="password" th:field="*{password}" id="password" required>
-	    
-	    <label for="image">Profile Picture:</label>
-	    <input type="file" name="image" id="image" accept="image/*">
-	    
-	    <button type="submit">Submit</button>
-	</form>
+	    <form th:action="@{/user/add}" th:object="${user}" method="post">
+	        <div>
+	            <label>Name:</label>
+	            <input type="text" th:field="*{name}" required>
+	        </div>
+	        <div>
+	            <label>Email:</label>
+	            <input type="email" th:field="*{email}" required>
+	        </div>
+	        <div>
+	            <label>Password:</label>
+	            <input type="password" th:field="*{password}" required>
+	        </div>
+			<label for="image">Profile Picture:</label>
+			    <input type="file" name="image" id="image" accept="image/*">
+	        <div>
+	            <button type="submit">Add User</button>
+	        </div>
+	    </form>
 	</body>
 	</html>

@@ -87,9 +87,10 @@
 </head>
 <body>
     <div>
-       
+        <!-- Show message if there are no users -->
         <h2 th:if="${#lists.isEmpty(users)}">No users yet!</h2>
 
+        <!-- Display users if the list is not empty -->
         <div th:if="${!#lists.isEmpty(users)}">
             <h2>Users</h2>
             <table>
@@ -103,19 +104,20 @@
                     </tr>
                 </thead>
                 <tbody>
-             
+                    <!-- Iterate through the list of users -->
                     <tr th:each="user : ${users}">
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.email}"></td>
+                        <!-- Dynamically display the user image -->
                         <td><img th:src="@{'/show-image?name=' + ${user.name}}" alt="user image"></td>
                         <td><a th:href="@{/user/edit/{id}(id=${user.id})}">Edit</a></td>
-                        <td><a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a></td>
+                        <td><a th:href="@{/user/delete/{id}(id=${user.id})}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-     
+        <!-- Link to add a new user -->
         <p>
             <a href="/user/add">Add a new user</a>
         </p>

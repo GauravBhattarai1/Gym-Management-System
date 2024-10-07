@@ -59,25 +59,20 @@
 
     <form th:action="@{/user/edit}" th:object="${user}" method="post">
        
-        <!-- Hidden ID Field -->
         <input type="hidden" th:field="*{id}" name="id" />
 
-        <!-- Name Field -->
         <label for="name">Name:</label>
         <input type="text" id="name" th:field="*{name}" placeholder="Enter name" required />
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> <!-- Validation error -->
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 
-        <!-- Email Field -->
         <label for="email">Email:</label>
         <input type="email" id="email" th:field="*{email}" placeholder="Enter email" required />
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> <!-- Validation error -->
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> 
 
-        <!-- Password Field -->
         <label for="password">Password:</label>
         <input type="password" id="password" th:field="*{password}" placeholder="Enter password" required />
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span> <!-- Validation error -->
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span> 
 
-        <!-- Submit Button -->
         <input type="submit" value="Save Changes" />
     </form>
 </body>

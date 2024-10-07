@@ -7,14 +7,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ContactsController {
 
-    @GetMapping("/home")
-    public String homePage() {
-        return "home";  
+    // Show the login page
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";  // Returns the view named "login.html"
     }
 
-    // Login functionality
+    // Redirect to home after login
+    @GetMapping("/home")
+    public String homePage() {
+        return "new";  // Returns the view named "home.html"
+    }
+
+    // Handle login POST request
     @PostMapping("/login")
     public String loginRedirect() {
-        return "new";  
+        return "redirect:/home";  // Redirect to the "new" page after successful login
+    }
+
+    // Show the new page
+    @GetMapping("/new")
+    public String newPage() {
+        return "new";  // Returns the view named "new.html"
     }
 }
